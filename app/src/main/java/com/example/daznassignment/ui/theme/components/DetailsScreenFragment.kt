@@ -33,7 +33,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,7 +60,7 @@ class DetailsScreenFragment : BaseComposeFragment() {
         LaunchedEffect(key1 = Unit) {
             getSearchString()?.let { viewModel.getAllNews(it) }
         }
-        val dataResponse = viewModel.newsResponse.observeAsState().value
+        val dataResponse = viewModel.newsResponse.collectAsState().value
         val scope = rememberCoroutineScope()
         val pagerState = getIndex()?.let { rememberPagerState(initialPage = it) }
         if (dataResponse?.loading == true) {
@@ -75,7 +75,7 @@ class DetailsScreenFragment : BaseComposeFragment() {
             ) {
                 LoadingState()
             }
-        } else if (dataResponse?.error == true) {
+        } else if (dataResponse?.error != null) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -85,7 +85,7 @@ class DetailsScreenFragment : BaseComposeFragment() {
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center
             ) {
-                ErrorState()
+                ErrorState(Modifier,dataResponse?.error )
             }
         } else {
             Box(
@@ -126,21 +126,23 @@ class DetailsScreenFragment : BaseComposeFragment() {
                 }
 
 
-                dataResponse?.news?.totalResults?.let {
+                dataResponse?.news?.articles?.size?.let {
                     if (pagerState != null) {
                         HorizontalPager(
                             pageCount = it,
                             state = pagerState,
                             pageSize = PageSize.Fill
                         ) { index ->
-                            Image(
-                                painter = rememberAsyncImagePainter(
-                                    model = dataResponse.news.articles[index].urlToImage
-                                ),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                                modifier = Modifier.fillMaxSize()
-                            )
+                            if(index != it) {
+                                Image(
+                                    painter = rememberAsyncImagePainter(
+                                        model = dataResponse.news.articles[index].urlToImage
+                                    ),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Fit,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
                         }
                     }
                 }
@@ -176,9 +178,11 @@ class DetailsScreenFragment : BaseComposeFragment() {
                     IconButton(
                         onClick = {
                             scope.launch {
-                                pagerState?.animateScrollToPage(
-                                    pagerState.currentPage + 1
-                                )
+                                if(pagerState?.currentPage != dataResponse.news?.articles?.size) {
+                                    pagerState?.animateScrollToPage(
+                                        pagerState.currentPage + 1
+                                    )
+                                }
                             }
                         },
                         modifier = Modifier
@@ -241,12 +245,12 @@ class DetailsScreenFragment : BaseComposeFragment() {
     }
 
     @Composable
-    fun ErrorState(modifier: Modifier = Modifier) {
+    fun ErrorState(modifier: Modifier = Modifier, error: String) {
         Box(
             modifier = modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
-            Text(text = "Error")
+            Text(text = error,color = Color.White)
         }
     }
 }
