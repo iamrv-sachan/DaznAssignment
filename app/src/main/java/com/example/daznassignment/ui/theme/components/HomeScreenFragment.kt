@@ -25,7 +25,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,7 +51,7 @@ class HomeScreenFragment : BaseComposeFragment() {
             viewModel.getAllNews(toShow)
         }
 
-        val dataResponse = viewModel.newsResponse.observeAsState().value
+        val dataResponse = viewModel.newsResponse.collectAsState().value
 
         if (dataResponse?.loading == true) {
             Column(
@@ -65,7 +65,7 @@ class HomeScreenFragment : BaseComposeFragment() {
             ) {
                 LoadingState()
             }
-        } else if( dataResponse?.error == true) {
+        } else if( dataResponse?.error != null) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -75,7 +75,7 @@ class HomeScreenFragment : BaseComposeFragment() {
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.Center
             ) {
-                ErrorState()
+                ErrorState(Modifier,dataResponse?.error)
             }
         }else{
             Surface(
@@ -152,12 +152,12 @@ class HomeScreenFragment : BaseComposeFragment() {
     }
 
     @Composable
-    fun ErrorState(modifier: Modifier = Modifier) {
+    fun ErrorState(modifier: Modifier = Modifier, error: String) {
         Box(
             modifier = modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
         ) {
-            Text(text = "Error")
+            Text(text = error, color = Color.White)
         }
     }
 
