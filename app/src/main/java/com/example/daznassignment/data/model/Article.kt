@@ -1,4 +1,4 @@
-package com.example.daznassignment.model
+package com.example.daznassignment.data.model
 
 import androidx.annotation.Keep
 

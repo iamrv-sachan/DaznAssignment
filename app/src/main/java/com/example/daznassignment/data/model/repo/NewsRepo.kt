@@ -1,6 +1,7 @@
-package com.example.daznassignment
+package com.example.daznassignment.data.model.repo
 
-import com.example.daznassignment.model.News
+import com.example.daznassignment.data.model.News
+import com.example.daznassignment.data.model.service.NewsService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

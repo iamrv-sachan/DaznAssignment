@@ -1,6 +1,6 @@
-package com.example.daznassignment
+package com.example.daznassignment.data.model.service
 
-import com.example.daznassignment.model.News
+import com.example.daznassignment.data.model.News
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query

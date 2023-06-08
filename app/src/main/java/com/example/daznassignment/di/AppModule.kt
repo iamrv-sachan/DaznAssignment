@@ -1,6 +1,6 @@
 package com.example.daznassignment.di
 
-import com.example.daznassignment.NewsService
+import com.example.daznassignment.data.model.service.NewsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
