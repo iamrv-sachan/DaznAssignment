@@ -1,4 +1,4 @@
-package com.example.daznassignment.ui.theme.components
+package com.example.daznassignment.ui.components
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

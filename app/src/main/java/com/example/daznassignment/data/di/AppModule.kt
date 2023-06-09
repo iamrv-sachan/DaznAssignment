@@ -1,6 +1,8 @@
-package com.example.daznassignment.di
+package com.example.daznassignment.data.di
 
-import com.example.daznassignment.data.model.service.NewsService
+import com.example.daznassignment.data.repo.NewsRepo
+import com.example.daznassignment.data.service.NewsService
+import com.example.daznassignment.domain.NewsRepoInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,4 +25,10 @@ object AppModule {
             .build()
             .create(NewsService::class.java)
 
+    @Provides
+    fun getRepoImplementation(newsService: NewsService) : NewsRepoInterface{
+        return NewsRepo(newsService)
+    }
+
 }
+

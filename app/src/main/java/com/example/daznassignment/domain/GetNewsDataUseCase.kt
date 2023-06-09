@@ -1,17 +1,16 @@
 package com.example.daznassignment.domain
 
+import com.example.daznassignment.base.RequestResult
 import com.example.daznassignment.data.model.News
-import com.example.daznassignment.data.model.RequestResult
-import com.example.daznassignment.data.model.repo.NewsRepo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 
-class GetNewsDataUseCase @Inject constructor(private val newsRepo: NewsRepo) {
+class GetNewsDataUseCase @Inject constructor(private val newsRepoInterface: NewsRepoInterface) {
     suspend operator fun invoke(searchString: String) =
         getNewsData {
-            newsRepo.getNews(searchString)
+            newsRepoInterface.getnewsData(searchString)
         }
     private suspend fun getNewsData(serviceInvoker: suspend () -> News): Flow<RequestResult<Any>> {
         return flow {

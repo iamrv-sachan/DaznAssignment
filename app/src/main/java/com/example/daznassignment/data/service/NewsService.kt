@@ -1,4 +1,4 @@
-package com.example.daznassignment.data.model.service
+package com.example.daznassignment.data.service
 
 import com.example.daznassignment.data.model.News
 import retrofit2.http.GET
