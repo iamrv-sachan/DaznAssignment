@@ -1,4 +1,4 @@
-package com.example.daznassignment.ui.theme.components
+package com.example.daznassignment.ui.components
 
 import android.os.Bundle
 import androidx.compose.foundation.Image
@@ -35,8 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import coil.compose.rememberAsyncImagePainter
 import com.example.daznassignment.R
-import com.example.daznassignment.ui.theme.viewModel.ScreensViewModel
-import com.example.daznassignment.baseFragment.BaseComposeFragment
+import com.example.daznassignment.ui.viewModel.ScreensViewModel
+import com.example.daznassignment.base.BaseComposeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

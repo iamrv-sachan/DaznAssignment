@@ -1,4 +1,4 @@
-package com.example.daznassignment.baseFragment
+package com.example.daznassignment.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

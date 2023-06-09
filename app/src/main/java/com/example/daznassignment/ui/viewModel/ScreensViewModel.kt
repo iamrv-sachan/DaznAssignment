@@ -1,11 +1,11 @@
-package com.example.daznassignment.ui.theme.viewModel
+package com.example.daznassignment.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.daznassignment.base.RequestResult
 import com.example.daznassignment.data.model.News
 import com.example.daznassignment.data.model.NewsUIState
-import com.example.daznassignment.data.model.RequestResult
-import com.example.daznassignment.data.model.repo.NewsRepo
+import com.example.daznassignment.data.repo.NewsRepo
 import com.example.daznassignment.domain.GetNewsDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

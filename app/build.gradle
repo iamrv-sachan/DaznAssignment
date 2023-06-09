@@ -69,9 +69,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.4.0"
-    debugImplementation "androidx.compose.ui:ui-tooling:1.4.0"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:1.4.0"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.4.3"
+    debugImplementation "androidx.compose.ui:ui-tooling:1.4.3"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:1.4.3"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -81,6 +81,7 @@ dependencies {
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    testImplementation " 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
 
     // Coroutine Lifecycle Scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
@@ -102,6 +103,26 @@ dependencies {
 
     //coil
     api "io.coil-kt:coil-compose:2.2.2"
+
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+    androidTestImplementation "androidx.arch.core:core-testing:2.2.0"
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+
+    // For instrumented tests.
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    testImplementation 'com.google.dagger:hilt-android-testing:2.44'
+
+    // ...with Kotlin.
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44'
+    // ...with Java.
+    androidTestAnnotationProcessor 'com.google.dagger:hilt-android-compiler:2.44'
+
+
 }
 
 kapt {

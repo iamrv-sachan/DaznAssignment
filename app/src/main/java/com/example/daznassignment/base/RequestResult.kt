@@ -1,4 +1,4 @@
-package com.example.daznassignment.data.model
+package com.example.daznassignment.base
 
 
 sealed class RequestResult<out R> {
